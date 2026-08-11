@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ruchitha Prasad Kalapala | All Artifacts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #121314; 
+  --surface: #1E2022; 
+  --card: #2B2D30; 
+  --card-h: #37393E;
+  --cyan: #FFFFFF; 
+  --cyan-d: rgba(255, 255, 255, 0.08); 
+  --cyan-b: rgba(255, 255, 255, 0.2);
+  --violet: #D1D5DB; 
+  --violet-d: rgba(209, 213, 219, 0.1);
+  --emerald: #E5E7EB; 
+  --em-d: rgba(229, 231, 235, 0.08); 
+  --em-b: rgba(229, 231, 235, 0.2);
+  --amber: #9CA3AF;
+  --text: #F9FAFB; 
+  --muted: #9CA3AF; 
+  --dim: #E5E7EB;
+  --border: rgba(255, 255, 255, 0.08); 
+  --border-a: rgba(255, 255, 255, 0.25);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background-color:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+
+/* BACKGROUND CANVAS FIXED RIGHT TO VIEWPORT */
+canvas#mesh{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:1;pointer-events:none;opacity:.35}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:.9rem 2.5rem;display:flex;align-items:center;justify-content:space-between;background:rgba(18,19,20,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;color:var(--text);text-decoration:none}
+.nav-brand span{color:var(--cyan)}
+.nav-artifacts{display:flex;align-items:center;gap:.75rem;list-style:none}
+.nav-artifacts a{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.02em;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-artifacts a:hover{color:var(--text)}
+.artifact-word{color:var(--cyan);font-weight:700}
+.portfolio-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem 1.5rem}
+.quick-links{display:flex;flex-wrap:wrap;gap:.6rem;padding-top:.5rem}
+.quick-links a{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.02em;color:var(--muted);text-decoration:none;padding:.4rem .75rem;border:1px solid var(--border);border-radius:8px;transition:border-color .2s,color .2s}
+.quick-links a:hover{border-color:var(--border-a);color:var(--text)}
+.quick-links .artifact-word{color:var(--cyan);font-weight:700}
+@media(max-width:900px){.nav-artifacts{display:none}}
+
+/* HERO */
+.hero{min-height:60vh;position:relative;display:flex;align-items:center;justify-content:center;padding:7rem 2rem 3rem;text-align:center;z-index:2}
+.hero-content{position:relative;z-index:3;max-width:820px}
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem 1rem;border:1px solid var(--border-a);border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--cyan);margin-bottom:1.5rem;letter-spacing:.06em}
+.blink{width:7px;height:7px;border-radius:50%;background:var(--cyan);animation:blink 1.8s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.8rem,6vw,5rem);font-weight:700;line-height:1.08;letter-spacing:-.02em;margin-bottom:.3rem;background:linear-gradient(to bottom, #FFFFFF 40%, #A3A3A3 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.name-c{color:var(--cyan)}
+.hero-role{font-family:'Space Grotesk',sans-serif;font-size:clamp(.95rem,2vw,1.2rem);color:var(--muted);font-weight:400;letter-spacing:.03em}
+
+/* SECTIONS */
+section{padding:2rem 2rem 5.5rem;position:relative;z-index:2}
+.container{max-width:1100px;margin:0 auto}
+.s-label{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--muted);letter-spacing:.16em;text-transform:uppercase;margin-bottom:.5rem;text-align:center}
+.s-title{color:#FFFFFF;font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;margin-bottom:2.5rem;text-align:center}
+
+/* ARTIFACT CARD (no accordion, always expanded) */
+.a-grid{display:flex;flex-direction:column;gap:2rem}
+.a-card{background:rgba(43,45,48,0.85);border:1px solid var(--border-a);border-radius:18px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.4);backdrop-filter:blur(8px);margin-bottom:2rem;scroll-margin-top:100px}
+.a-card:last-child{margin-bottom:0}
+.a-header{padding:1.75rem;display:flex;align-items:flex-start;gap:1.25rem}
+.a-num{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--cyan);background:var(--cyan-d);border:1px solid var(--border-a);border-radius:9px;padding:.45rem .65rem;flex-shrink:0;margin-top:.1rem;font-weight:600;letter-spacing:.04em}
+.a-meta{flex:1;min-width:0}
+.a-title{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700;margin-bottom:.35rem;line-height:1.3}
+.a-intro{color:var(--dim);font-size:.88rem;line-height:1.65;margin-bottom:.8rem}
+.a-tools{display:flex;flex-wrap:wrap;gap:.35rem}
+.tool{font-family:'JetBrains Mono',monospace;font-size:.66rem;padding:.22rem .6rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:5px;color:var(--dim)}
+.a-body{padding:0 1.75rem 1.75rem calc(1.75rem + 2.5rem + 1.25rem)}
+.a-divider{height:1px;background:var(--border);margin-bottom:1.5rem}
+.blk{margin-bottom:1.4rem}
+.blk-lbl{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;margin-bottom:.45rem}
+.blk p,.blk li{color:var(--dim);font-size:.88rem;line-height:1.7}
+.blk ol{padding-left:1.2rem}
+.blk li{margin-bottom:.3rem}
+.vp-box{background:rgba(255, 255, 255, 0.03);border:1px solid var(--border);border-left:3px solid var(--cyan);border-radius:0 12px 12px 0;padding:1rem 1.25rem;margin-top:1rem}
+.vp-box .blk-lbl{color:var(--text);font-weight:600}
+.vp-box p{color:var(--text);font-size:.92rem;line-height:1.7}
+.vp-box p strong{color:var(--cyan)}
+.a-img{width:100%;border-radius:12px;border:1px solid var(--border);margin-top:.5rem;display:block}
+.a-img-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:.75rem}
+.a-img-cap{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);text-align:center;margin-top:.4rem;letter-spacing:.04em}
+
+@media(max-width:700px){
+  .a-body{padding:0 1.25rem 1.5rem 1.25rem}
+}
+
+/* FOOTER */
+footer{padding:4rem 2rem;border-top:1px solid var(--border);text-align:center;background:#121314;position:relative;z-index:2}
+.ft-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.4rem;margin-bottom:.4rem}
+.ft-name span{color:var(--cyan)}
+.ft-role{color:var(--muted);font-size:.9rem;margin-bottom:1.5rem}
+.ft-links{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;margin-bottom:2rem}
+.ft-links a{color:var(--muted);text-decoration:none;font-size:.9rem;transition:color .2s}
+.ft-links a:hover{color:var(--cyan)}
+.ft-divider{height:1px;background:var(--border);max-width:400px;margin:1.5rem auto}
+.ft-note{color:var(--muted);font-size:.78rem;margin-bottom:.3rem}
+</style>
+</head>
+<body>
+
+<canvas id="mesh"></canvas>
+
+<nav>
+  <a class="nav-brand" href="#home">Ruchitha Prasad Kalapala</a>
+  <ul class="nav-artifacts">
+    <li><a href="#a1"><span class="artifact-word">ARTIFACT</span>-1</a></li>
+    <li><a href="#a2"><span class="artifact-word">ARTIFACT</span>-2</a></li>
+    <li><a href="#a3"><span class="artifact-word">ARTIFACT</span>-3</a></li>
+    <li><a href="#a4"><span class="artifact-word">ARTIFACT</span>-4</a></li>
+    <li><a href="#a5"><span class="artifact-word">ARTIFACT</span>-5</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="eyebrow"><span class="blink"></span>Professional Portfolio</div>
+    <h1>Ruchitha<br><span class="name-c">Prasad Kalapala</span></h1>
+    <p class="hero-role">Project Manager · AI/ML Practitioner</p>
+  </div>
+</section>
+
+<!-- ARTIFACTS -->
+<section id="portfolio">
+  <div class="container">
+    <div class="portfolio-head">
+      <div>
+        <div class="s-label">· Artifacts A-01 through A-05</div>
+        <h2 class="s-title">Artifacts</h2>
+      </div>
+      <div class="quick-links">
+        <a href="#a1"><span class="artifact-word">ARTIFACT</span>-1</a>
+        <a href="#a2"><span class="artifact-word">ARTIFACT</span>-2</a>
+        <a href="#a3"><span class="artifact-word">ARTIFACT</span>-3</a>
+        <a href="#a4"><span class="artifact-word">ARTIFACT</span>-4</a>
+        <a href="#a5"><span class="artifact-word">ARTIFACT</span>-5</a>
+      </div>
+    </div>
+
+    <div class="a-grid">
+
+
+<!-- ARTIFACT 1 (was 5) -->
+<div class="a-card" id="a1">
+  <div class="a-header">
+    <div class="a-num">ARTIFACT-1</div>
+    <div class="a-meta">
+      <div class="a-title">History &amp; Achievements of Artificial Intelligence</div>
+      <div class="a-intro">A comprehensive research presentation tracing 70+ years of AI milestones — from Alan Turing's 1950 paper to modern generative AI — designed as an executive-ready reference for teams beginning their AI adoption journey.</div>
+      <div class="a-tools">
+        <span class="tool">PowerPoint</span>
+        <span class="tool">Academic Research</span>
+        <span class="tool">Claude AI</span>
+        <span class="tool">Timeline Visualization</span>
+        <span class="tool">Infographic Design</span>
+      </div>
+    </div>
+  </div>
+  <div class="a-body">
+    <div class="a-divider"></div>
+    <div class="blk">
+      <div class="blk-lbl">Objective</div>
+      <p>To create a structured, visually engaging research presentation that maps the full arc of AI development — covering foundational theory, key breakthroughs, landmark applications, and the emergence of modern generative AI — usable by both technical and non-technical audiences.</p>
+    </div>
+    <div class="blk">
+      <div class="blk-lbl">Process</div>
+      <ol>
+        <li>Define five eras of AI development: Foundations (1950–1969), Knowledge Systems (1970–1989), AI Winter &amp; Revival (1990–2009), Deep Learning Era (2010–2019), and the Generative AI Age (2020–present).</li>
+        <li>Researched milestone events per era using academic sources, IEEE publications, and verified AI history timelines. Used Claude AI to validate and cross-reference key dates and attribution.</li>
+        <li>Identified 20+ landmark achievements including the Turing Test (1950), Perceptron (1958), Expert Systems (1970s), IBM Deep Blue (1997), ImageNet &amp; AlexNet (2012), GPT-3 (2020), and ChatGPT (2022).</li>
+        <li>Structured the presentation with a visual timeline, era-by-era breakdowns, "why it mattered" commentary for each milestone, and a forward-looking section on AI's trajectory.</li>
+        <li>Designed slides with consistent visual language: era color-coding, quote callouts from key AI figures, and a visual "AI Impact Wheel" showing sectors transformed by AI.</li>
+      </ol>
+    </div>
+    <div class="blk">
+      <div class="blk-lbl">Key Themes</div>
+      <p>AI progress has not been linear — the field experienced two major "winters" driven by overinflated expectations. Each revival was triggered not by theory alone, but by increases in compute power and data availability. The 2017 Transformer architecture paper ("Attention Is All You Need") proved to be the single most consequential technical contribution to modern AI.</p>
+    </div>
+
+<div>
+    <img class="a-img" src="AI_History-1.png" alt="Artifical Intelligence Image - 1">
+    <div class="a-img-cap">Fig. Artifical Intelligence History-1</div>
+  </div>
+
+  <div>
+    <img class="a-img" src="AI_History-2.png" alt="Artifical Intelligence Image - 2">
+    <div class="a-img-cap">Fig. Artifical Intelligence History-2</div>
+  </div>
+
+    <div class="vp-box">
+      <div class="blk-lbl">Artifact Value Proposition</div>
+      <p>This presentation <strong>compresses 70+ years of AI history into a single 20-minute briefing</strong>, saving leadership teams an estimated <strong>10–15 hours of independent research</strong> when building internal AI literacy programs — and providing a defensible, source-backed narrative for AI strategy discussions.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ARTIFACT 2 (was 6) -->
+<div class="a-card" id="a2">
+  <div class="a-header">
+    <div class="a-num">A · 06</div>
+    <div class="a-meta">
+      <div class="a-title">Las Vegas Residential Real Estate Market Report (2026–2027)</div>
+      <div class="a-intro">A data-driven real estate analysis tracking the transition from the 2026 current baseline into 2027 projections, examining the counter-balancing economic forces of home price inflation and mortgage rate deflation.</div>
+      <div class="a-tools">
+        <span class="tool">Market Analysis</span>
+        <span class="tool">Real Estate Economics</span>
+        <span class="tool">Predictive Modeling</span>
+        <span class="tool">Strategic Planning</span>
+        <span class="tool">Academic Research</span>
+      </div>
+    </div>
+  </div>
+  <div class="a-body">
+    <div class="a-divider"></div>
+    <div class="blk">
+      <div class="blk-lbl">Objective</div>
+      <p>To evaluate the shifting dynamics of the Las Vegas residential housing market, parse complex socioeconomic data down to high-impact variables affecting buyer purchasing power, and provide an actionable, forward-looking framework for strategic planning.</p>
+    </div>
+    <div class="blk">
+      <div class="blk-lbl">Process</div>
+      <ol>
+        <li>Established a 2026 operational baseline using verified historical data from Las Vegas REALTORS® (LVR) and Freddie Mac, confirming a median single-family home price of $490,000 against a 6.50% 30-year fixed mortgage rate.</li>
+        <li>Modeled 2027 market projections by correlating macroeconomic variables, factoring in Clark County's net migration of ~42,000 residents annually against a tightening inventory supply projected to drop below 3 months. Using Gemini.</li>
+        <li>Contextualized historic-high valuations by analyzing the structural reset of the 2020–2022 pandemic boom, demonstrating how a 50% price spike established a permanent floor under local housing inventory.</li>
+        <li>Mapped geographic submarket divergence across the valley, contrasting hyper-competitive seller markets (Summerlin and Henderson) with affordable starter-home valves (North Las Vegas).</li>
+        <li>Formatted into an accessible strategic brief complete with executive findings, core data matrices, localized leverage windows, and balanced advice for navigating the market without anticipating a 2008-style crash.</li>
+      </ol>
+    </div>
+    <div class="blk">
+      <div class="blk-lbl">Key Insight</div>
+      <p>Using AI analysis Studied that: Subsequent interest rate hikes successfully compressed sales volume but completely failed to drop home values because pandemic-era migration patterns anchored local inventory floors. As interest rates dip toward the low 6% range in 2027, expanded purchasing power will pull buyers back into the market—absorbing listings faster than new inventory can arrive and driving home prices up to a projected $500,000–$510,000+.</p>
+      
+
+<img class="a-img" src="Housing Market Forecast.jpg" alt="Fig. Housing Market Forecast" >
+        <div class="a-img-cap">Fig. Housing Market Forecast </div>
+
+  
+    <div class="vp-box">
+      <div class="blk-lbl">Artifact Value Proposition</div>
+      <p>The Las Vegas Residential Real Estate Market Report <strong>equips buyers and strategic planners with a clear-eyed predictive framework that highlights a temporary 2026 buyer leverage window—allowing stakeholders to capitalize on seller flexibility before dropping 2027 interest rates reignite intense marketplace competition.</strong></p>
+    </div>
+  </div>
+</div>
+
+
+    </div>
+
+
+<!-- ARTIFACT 3 -->
+<div class="a-card" id="a3">
+  <div class="a-header">
+    <div class="a-num">ARTIFACT-3</div>
+    <div class="a-meta">
+      <div class="a-title">Study of Usages Between Machine Learning &amp; Deep Learning</div>
+      <div class="a-intro">A comparative case study examining when to apply simple machine learning versus deep learning, using real-world spam detection and facial recognition systems to illustrate the tradeoffs in data structure, computing power, and problem complexity.</div>
+      <div class="a-tools">
+        <span class="tool">Comparative Analysis</span>
+        <span class="tool">Machine Learning</span>
+        <span class="tool">Deep Learning</span>
+        <span class="tool">Academic Research</span>
+        <span class="tool">Case Study</span>
+      </div>
+    </div>
+  </div>
+  <div class="a-body">
+    <div class="a-divider"></div>
+    <div class="blk">
+      <div class="blk-lbl">Objective</div>
+      <p>To compare simple machine learning and deep learning approaches through real-world applications, and to determine which approach is best suited to a given problem based on data structure, feature complexity, and computing requirements.</p>
+    </div>
+    <div class="blk">
+      <div class="blk-lbl">Machine Learning Example: Email Spam Detection</div>
+      <p>A real-world application of simple machine learning is Gmail's spam filter. Gmail looks at signals like sender reputation, IP address, domain history, and user actions (such as marking an email as spam) to sort incoming mail into the inbox or spam folder. Because these features — like sender address, subject line patterns, and known spam keywords — are well defined and limited in number, a simpler model like logistic regression or a decision tree works well here. In fact, research shows that most real-world spam filters still lean on lighter, well-established algorithms such as Naïve Bayes rather than deep neural networks, since these simpler models can already reach accuracy rates above 99%.</p>
+      <p>A machine learning approach is well suited for spam detection because the problem relies on a fairly small, well-defined set of features that can be identified ahead of time. Since these features are already structured and labeled data (spam vs. not spam) is easy to collect, a simpler model can learn the patterns efficiently without needing extra computing power. This makes machine learning a practical, lightweight solution that's easy to train, fast to run, and accurate enough for the task at hand.</p>
+      <p>A deep learning approach wouldn't be the right fit for this task. Deep learning is built to find hidden patterns in messy, unstructured data, like images or full sentences, where the important features aren't already known ahead of time. Since spam detection already works with a clear, structured set of features, adding a deep learning model would mean more computing power and complexity without a meaningful improvement in results.</p>
+    </div>
+    <div class="blk">
+      <div class="blk-lbl">Deep Learning Example: Facial Recognition (Face ID)</div>
+      <p>A strong real-world example of deep learning is Apple's Face ID. It uses a convolutional neural network (CNN) paired with a TrueDepth camera system to build a detailed depth map of a person's face and compare it against a stored facial profile. The system was trained on over a billion images so it could learn facial patterns directly from raw visual data, without a person having to manually define what counts as an "eye" or "nose."</p>
+      <p>This is a case where deep learning is necessary. Faces vary constantly, in lighting, angle, expression, and small changes over time, and a CNN can automatically detect these deep, layered patterns in pixel data. A simple machine learning model wouldn't work well here because it depends on predefined features, and manually describing every version of a human face would be nearly impossible.</p>
+      
+
+<img class="a-img" src="Deep learning vs ML.jpg" alt="Fig. Machine Learning vs. Deep Learning Comparison" >
+        <div class="a-img-cap">Fig. Machine Learning vs. Deep Learning Comparison </div>
+
+  
+
+    <div class="vp-box">
+      <div class="blk-lbl">Artifact Value Proposition</div>
+      <p>This case study <strong>provides a clear, side-by-side decision framework</strong> for choosing between machine learning and deep learning based on data structure and problem complexity — helping teams <strong>avoid over-engineering simple problems</strong> while correctly applying deep learning where it's actually needed.</p>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+
+<!-- ARTIFACT 4 (was 2) -->
+<div class="a-card" id="a4">
+  <div class="a-header">
+    <div class="a-num">ARTIFACT-4</div>
+    <div class="a-meta">
+      <div class="a-title">Types of Neural Networks &amp; Famous Model Deep Learning Architectures</div>
+      <div class="a-intro">A reference study mapping the core families of deep learning architectures (supervised vs. unsupervised) to the training methods actually used by today's leading AI assistants — showing why ChatGPT, Gemini, and Claude behave differently despite sharing the same underlying Transformer design.</div>
+      <div class="a-tools">
+        <span class="tool">Neural Networks</span>
+        <span class="tool">Deep Learning Architectures</span>
+        <span class="tool">Transformers</span>
+        <span class="tool">RLHF</span>
+        <span class="tool">Constitutional AI</span>
+        <span class="tool">Comparative Analysis</span>
+      </div>
+    </div>
+  </div>
+  <div class="a-body">
+    <div class="a-divider"></div>
+    <div class="blk">
+      <div class="blk-lbl">Objective</div>
+      <p>To catalog the core families of deep learning architectures, classify them as supervised or unsupervised, and connect that theory to the actual training approaches behind the three most widely used AI assistants — clarifying where each model sits on the supervised/unsupervised spectrum and what makes each one distinct.</p>
+    </div>
+    <div class="blk">
+      <div class="blk-lbl">Types of Deep Learning: Supervised vs. Unsupervised</div>
+      <ul>
+        <li><strong>Convolutional Neural Network (CNN)</strong> — Supervised. Learns visual patterns through layers of convolution and pooling. <em>Example: Face ID / image recognition.</em></li>
+        <li><strong>Recurrent Neural Network (RNN)</strong>, including LSTM &amp; GRU — Supervised. Feeds prior outputs back into the network to retain memory of sequence data. <em>Example: speech recognition.</em></li>
+        <li><strong>Self-Organizing Map (SOM)</strong> — Unsupervised. Clusters unlabeled input using competing nodes. <em>Example: dimensionality reduction &amp; clustering.</em></li>
+        <li><strong>Autoencoders (AE)</strong> — Unsupervised. Compresses input to a smaller code, then reconstructs it. <em>Example: image compression.</em></li>
+        <li><strong>Restricted Boltzmann Machine (RBM)</strong> — Unsupervised. A two-layer probabilistic network that reconstructs input. <em>Example: collaborative filtering.</em></li>
+      </ul>
+    </div>
+    <div class="blk">
+      <div class="blk-lbl">How ChatGPT, Gemini &amp; Claude Actually Learn</div>
+      <p><strong>1. The Initial Training (Unsupervised).</strong> When these models are first built, they read massive amounts of internet text, books, and code with no labels attached, learning only by trying to predict the next word. This is unsupervised learning — the model is finding patterns on its own.</p>
+      <p><strong>2. The Guidance Phase (Supervised).</strong> "Guiding" a model's behavior after pretraining — through fine-tuning or RLHF — is supervised learning:</p>
+      <ul>
+        <li><strong>Fine-tuning:</strong> humans write example-correct answers, and the model learns to mimic them, like a student studying an answer key.</li>
+        <li><strong>RLHF (Reinforcement Learning from Human Feedback):</strong> humans grade the model's answers (good vs. bad), and the model learns to maximize "good" grades. This is still supervised, because a human is providing the correct feedback signal.</li>
+      </ul>
+      <p>In short: these models learn <em>knowledge</em> through unsupervised learning, but they learn <em>manners and behavior</em> through supervised learning.</p>
+      <p><strong>Architecture notes:</strong> ChatGPT and Gemini are both built on the Transformer architecture. Gemini is designed as a multimodal model from the ground up — it takes in text, images, audio, and video together through the same neural network, rather than gluing separate systems together, which is a step beyond a standard text-first Transformer. Claude, from Anthropic, also runs on a Transformer "engine," but the distinguishing factor is <strong>Constitutional AI</strong> — instead of relying only on human-ranked feedback, the model is trained against a written set of principles and checks its own outputs against that "constitution" during training. So while the engine is similar across all three, Claude's "driver's training" is what sets it apart.</p>
+    </div>
+
+<div class="image-container">
+  <img class="a-img" src="types of neural networks.png" alt="Types of Neural Networks">
+  <div class="a-img-cap">Fig. Types of Neural Networks</div>
+</div>
+
+  <div>
+     <div class="image-container">
+    <img class="a-img" src="Approaches of Famous Chatbots.png" alt="Artifical Intelligence Image - 2">
+    <div class="a-img-cap">Fig. Approaches of Famous Chatbots</div>
+  </div>
+<p>
+
+  
+    <div class="vp-box">
+      <div class="blk-lbl">Artifact Value Proposition</div>
+      <p>This artifact turns dense ML architecture theory into a <strong>practical decision map</strong> — showing that three products built on the same Transformer "engine" still behave differently because their post-training method (RLHF vs. Constitutional AI) shapes tone, safety behavior, and reliability. That distinction is directly useful when <strong>choosing the right AI tool for engineering decision-support work</strong>, rather than treating "AI" as one interchangeable thing.</p>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+
+<!-- ARTIFACT 5 (was 1) -->
+<div class="a-card" id="a5">
+  <div class="a-header">
+    <div class="a-num">ARTIFACT-5</div>
+    <div class="a-meta">
+      <div class="a-title">Bias-Aware Content Moderation System: An End-to-End ML Design Case Study</div>
+      <div class="a-intro">A systems design case study for a real-time content moderation classifier processing millions of daily messages — addressing extreme class imbalance, inconsistent historical labels, dialect bias, privacy-constrained explainability, and continuous model drift for a production-scale trust &amp; safety pipeline.</div>
+      <div class="a-tools">
+        <span class="tool">Transformer NLP</span>
+        <span class="tool">Focal Loss</span>
+        <span class="tool">Confident Learning</span>
+        <span class="tool">Adversarial Debiasing</span>
+        <span class="tool">Active Learning</span>
+        <span class="tool">Model Explainability</span>
+      </div>
+    </div>
+  </div>
+  <div class="a-body">
+    <div class="a-divider"></div>
+
+    <div class="blk">
+      <div class="blk-lbl">Objective</div>
+      <p>The primary objective of this case study is to design a real-time, end-to-end machine learning architecture for enterprise content moderation that effectively detects harassment, hate speech, and threats while overcoming critical data challenges. Specifically, the system is engineered to navigate high-dimensional text at sub-second latency, extreme class imbalance, and noisy historical labels, all without compromising strict user privacy regulations.
+
+Ultimately, this design demonstrates that catching harmful content at scale and protecting non-standard-dialect speakers from over-censorship are not competing goals. By integrating techniques like adversarial debiasing to mitigate AAVE bias, confident learning for label correction, and ephemeral caching for privacy-compliant explainability, the architecture translates abstract ML challenges into a concrete, deployable pipeline that continuously adapts to evolving threats.
+    </div>
+
+    <div class="blk">
+      <div class="blk-lbl">Sources</div>
+      <p>Data challenge framework adapted from an outline of the fourteen core ML data challenges (availability, quality, labeling, privacy, bias, imbalance, scalability, versioning, integration, drift, annotation cost, real-time processing, interoperability, and annotation quality), and from <em>"Data Quality Issues That Kill Your Machine Learning Models,"</em> Towards Data Science, https://towardsdatascience.com/data-quality-issues-that-kill-your-machine-learning-models-961591340b40/.</p>
+    </div>
+
+    <img class="a-img" src="Moderation-Training.png" alt="End-to-End Training of Content Moderation System" >
+        <div class="a-img-cap">Fig. End-To-End Training of Content Moderation System </div>
+
+    <div class="vp-box">
+      <div class="blk-lbl">Artifact Value Proposition</div>
+      <p>This case study <strong>demonstrates how to translate abstract ML data challenges into a concrete, deployable system architecture</strong> — showing that catching harmful content at scale and protecting non-standard-dialect speakers from over-censorship <strong>are not competing goals, but two outcomes of the same disciplined data and modeling practice.</strong></p>
+    </div>
+
+  </div>
+</div>
+<!-- end a-grid -->
+  </div>
+</section>
+
+<!-- FOOTER / CONTACT -->
+<footer id="contact">
+  <div class="ft-name">Ruchitha Prasad <span>Kalapala</span></div>
+  <div class="ft-role">Structural Project Manager · Masters in AI · Indiana Wesleyan University</div>
+  <div class="ft-links">
+    <a href="mailto:ruchitharpk@gmail.com">ruchitharpk@gmail.com</a>
+    <a href="tel:3129754786">(312) 975-4786</a>
+    <a href="#">Henderson, Nevada 89074</a>
+  </div>
+  <div class="ft-divider"></div>
+  <div class="ft-note">Professional Portfolio</div>
+</footer>
+
+<script>
+/* ---- Interactive Mesh canvas animation fixed across entire viewport ---- */
+(function(){
+  const canvas=document.getElementById('mesh');
+  const ctx=canvas.getContext('2d');
+  let W,H,pts;
+  
+  let mouse = { x: null, y: null, radius: 180 };
+
+  window.addEventListener('mousemove', function(e) {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+
+  window.addEventListener('touchmove', function(e) {
+    if(e.touches.length > 0) {
+      mouse.x = e.touches[0].clientX;
+      mouse.y = e.touches[0].clientY;
+    }
+  });
+
+  window.addEventListener('mouseleave', function() { mouse.x = null; mouse.y = null; });
+  window.addEventListener('touchend', function() { mouse.x = null; mouse.y = null; });
+
+  function resize(){
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    init();
+  }
+  
+  function init(){
+    pts=[];
+    const n = Math.floor((W * H) / 12000); 
+    for(let i=0; i<n; i++){
+      pts.push({
+        x: Math.random() * W, 
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.6,
+        r: Math.random() * 1.5 + 0.8
+      });
+    }
+  }
+  
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    const D = 130;
+    
+    for(let i=0; i<pts.length; i++){
+      const a = pts[i];
+      
+      a.x += a.vx; a.y += a.vy;
+      if(a.x < 0 || a.x > W) a.vx *= -1;
+      if(a.y < 0 || a.y > H) a.vy *= -1;
+      
+      if (mouse.x !== null && mouse.y !== null) {
+        let dx = mouse.x - a.x;
+        let dy = mouse.y - a.y;
+        let dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < mouse.radius) {
+          let force = (mouse.radius - dist) / mouse.radius;
+          a.x += (dx / dist) * force * 2.2;
+          a.y += (dy / dist) * force * 2.2;
+        }
+      }
+
+      for(let j=i+1; j<pts.length; j++){
+        const b = pts[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const d = Math.sqrt(dx*dx + dy*dy);
+        if(d < D){
+          const alpha = (1 - d/D) * 0.22;
+          ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
+          ctx.lineWidth = 0.5;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      }
+      
+      ctx.beginPath();
+      ctx.arc(a.x, a.y, a.r, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(255,255,255,0.55)';
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+})();
+</script>
+</body>
+</html>
